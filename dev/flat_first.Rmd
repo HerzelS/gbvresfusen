@@ -10,6 +10,18 @@ editor_options:
 
 ```{r development, include=FALSE}
 library(testthat)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(janitor)
+library(magrittr)
+library(readxl)
+library(lubridate)
+library(corrplot)
+library(dplyr)
+library(scales)
+library(here)
+library(writexl)
 ```
 
 <!--
@@ -67,6 +79,8 @@ After inflating the template
 # Prepare the code of your function here
 ```
 
+
+
 ```{r function}
 #' My median
 #'
@@ -110,6 +124,8 @@ nyc_squirrels <- read.csv(datafile, encoding = "UTF-8")
 my_median(nyc_squirrels[, "hectare_squirrel_number"])
 ```
 
+
+
 <!--
 Create a chunk with a test of use for your function
 
@@ -137,6 +153,34 @@ test_that("my_median works properly with internal dataset", {
   expect_equal(my_median(nyc_squirrels[, "hectare_squirrel_number"]), 3)
 })
 ```
+
+
+
+# A function to import mulitple excel files
+
+```{r function}
+import_multiple_excel <- function(file_paths) {
+  result <- list()
+
+  for (file in file_paths) {
+    if (file.exists(file)) {
+      message(paste("Reading:", file))
+      tryCatch({
+        data <- read_excel(file)
+        result[[file]] <- data  # Store in list with filename as key
+      }, error = function(e) {
+        warning(paste("Error reading", file, ":", e$message))
+      })
+    } else {
+      warning(paste("File does not exist:", file))
+    }
+  }
+
+  return(result)
+}
+
+```
+
 
 # Calculate the mean of a vector
 
@@ -183,6 +227,9 @@ test_that("my_median works properly and show error if needed", {
   expect_error(my_other_median("text"))
 })
 ```
+
+
+
 
 <!--
 # There can be development actions

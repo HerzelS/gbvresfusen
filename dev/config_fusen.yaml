@@ -2,6 +2,7 @@ flat_first.Rmd:
   path: dev/flat_first.Rmd
   state: active
   R:
+  - R/import_multiple_excel.R
   - R/my_median.R
   - R/my_other_median.R
   tests:
