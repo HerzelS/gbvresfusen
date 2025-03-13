@@ -1,0 +1,13 @@
+Package: gbvresfusen
+Version: 0.0.0.9000
+Title: Analysis of GBV Results
+Description: This package analysis the GBV data for expenditure and results.
+Authors@R: person(given = "Herzel",
+       family = "Mukandi",
+       role = c("aut", "cre"),
+       email = "mukandiherzel@gmmail.com",
+       comment = c(ORCID = "0000-0000-0000-0000"))
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
